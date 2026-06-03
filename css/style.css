@@ -740,3 +740,6 @@ a:hover { color: var(--accent); }
   color: var(--text-secondary);
   font-size: var(--font-size-sm);
 }
+[data-theme="dark"] .navbar__logo span {
+  color: #93c5fd !important;
+}
