@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en-NP">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Score History | Driving License MCQ Nepal</title>
+  <meta name="description" content="View your driving license MCQ practice history. Track progress, see improvement over time.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  
+  <!-- Chart.js for graph -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="navbar__container">
+      <a href="/" class="navbar__logo">
+        <span class="navbar__logo-icon">🚗</span>
+        <span>DL Nepal</span>
+      </a>
+      
+      <ul class="navbar__menu">
+        <li><a href="/" class="navbar__link">Home</a></li>
+        <li><a href="/quiz.html" class="navbar__link">Quiz</a></li>
+        <li><a href="/questions.html" class="navbar__link">Questions</a></li>
+        <li><a href="/history.html" class="navbar__link active">History</a></li>
+      </ul>
+      
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div class="lang-toggle">
+          <button class="lang-toggle__btn active" data-lang="en">EN</button>
+          <button class="lang-toggle__btn" data-lang="np">NP</button>
+        </div>
+        <button class="theme-toggle">🌙</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="container" style="padding:var(--space-xl) 0;">
+    <h1 style="text-align:center;margin-bottom:var(--space-lg);">
+      <span data-en="📊 Your Practice History" data-np="📊 तपाईंको अभ्यास इतिहास">📊 Your Practice History</span>
+    </h1>
+
+    <!-- Stats Overview -->
+    <div class="stats-bar" style="margin-bottom:var(--space-xl);">
+      <div class="stats-bar__item">
+        <span class="stats-bar__number" id="total-attempts">0</span>
+        <span class="stats-bar__label" data-en="Total Attempts" data-np="कुल प्रयास">Total Attempts</span>
+      </div>
+      <div class="stats-bar__item">
+        <span class="stats-bar__number" id="best-score">0/25</span>
+        <span class="stats-bar__label" data-en="Best Score" data-np="सबैभन्दा राम्रो स्कोर">Best Score</span>
+      </div>
+      <div class="stats-bar__item">
+        <span class="stats-bar__number" id="avg-score">0%</span>
+        <span class="stats-bar__label" data-en="Average" data-np="औसत">Average</span>
+      </div>
+      <div class="stats-bar__item">
+        <span class="stats-bar__number" id="pass-rate">0%</span>
+        <span class="stats-bar__label" data-en="Pass Rate" data-np="पास दर">Pass Rate</span>
+      </div>
+    </div>
+
+    <!-- Score Chart -->
+    <div class="card" style="margin-bottom:var(--space-lg);padding:var(--space-md);">
+      <h2 style="margin-bottom:var(--space-md);" data-en="Score Progress Over Time" data-np="समयसँगै स्कोर प्रगति">Score Progress Over Time</h2>
+      <canvas id="scoreChart" style="max-height:300px;"></canvas>
+    </div>
+
+    <!-- History Table -->
+    <div class="card">
+      <h2 style="margin-bottom:var(--space-md);" data-en="Recent Practice Sessions" data-np="ताजा अभ्यास सत्रहरू">Recent Practice Sessions</h2>
+      
+      <div id="empty-state" style="text-align:center;padding:var(--space-xl);display:none;">
+        <span style="font-size:64px;display:block;margin-bottom:var(--space-md);">📝</span>
+        <h3 data-en="No practice sessions yet!" data-np="अहिलेसम्म कुनै अभ्यास सत्र छैन!">No practice sessions yet!</h3>
+        <p data-en="Start practicing to see your history here." data-np="यहाँ इतिहास देख्न अभ्यास सुरु गर्नुहोस्।">Start practicing to see your history here.</p>
+        <a href="/quiz.html" class="btn btn--primary" style="margin-top:var(--space-md);">
+          🚀 <span data-en="Start Practicing" data-np="अभ्यास सुरु गर्नुहोस्">Start Practicing</span>
+        </a>
+      </div>
+
+      <div style="overflow-x:auto;">
+        <table style="width:100%;border-collapse:collapse;" id="history-table">
+          <thead>
+            <tr style="border-bottom:2px solid var(--border);">
+              <th style="padding:var(--space-sm);text-align:left;" data-en="Date" data-np="मिति">Date</th>
+              <th style="padding:var(--space-sm);text-align:left;" data-en="Category" data-np="वर्ग">Category</th>
+              <th style="padding:var(--space-sm);text-align:left;" data-en="Score" data-np="स्कोर">Score</th>
+              <th style="padding:var(--space-sm);text-align:left;" data-en="Result" data-np="परिणाम">Result</th>
+              <th style="padding:var(--space-sm);text-align:left;" data-en="Time" data-np="समय">Time</th>
+            </tr>
+          </thead>
+          <tbody id="history-rows">
+            <!-- Rows will be inserted here by JavaScript -->
+          </tbody>
+        </table>
+      </div>
+
+      <button onclick="clearHistory()" class="btn btn--secondary" style="margin-top:var(--space-md);color:var(--error);border-color:var(--error);">
+        🗑️ <span data-en="Clear All History" data-np="সব इतिहास हटाउनुहोस्">Clear All History</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Bottom Nav -->
+  <nav class="bottom-nav">
+    <div class="bottom-nav__items">
+      <a href="/" class="bottom-nav__item">
+        <span class="bottom-nav__icon">🏠</span>
+        <span>Home</span>
+      </a>
+      <a href="/quiz.html" class="bottom-nav__item">
+        <span class="bottom-nav__icon">📝</span>
+        <span>Quiz</span>
+      </a>
+      <a href="/questions.html" class="bottom-nav__item">
+        <span class="bottom-nav__icon">📋</span>
+        <span>Questions</span>
+      </a>
+      <a href="/history.html" class="bottom-nav__item active">
+        <span class="bottom-nav__icon">📊</span>
+        <span>History</span>
+      </a>
+    </div>
+  </nav>
+
+  <script>
+    // Load history from localStorage
+    const history = JSON.parse(localStorage.getItem('dlQuizHistory') || '[]');
+    
+    // Display empty state if no history
+    if (history.length === 0) {
+      document.getElementById('empty-state').style.display = 'block';
+      document.getElementById('history-table').style.display = 'none';
+    } else {
+      displayHistory(history);
+      displayStats(history);
+      displayChart(history);
+    }
+
+    function displayHistory(historyData) {
+      const tbody = document.getElementById('history-rows');
+      tbody.innerHTML = '';
+
+      historyData.slice(0, 50).forEach(session => {
+        const row = document.createElement('tr');
+        row.style.borderBottom = '1px solid var(--border)';
+        
+        const date = new Date(session.date);
+        const formattedDate = date.toLocaleDateString('en-NP', { 
+          year: 'numeric', 
+          month: 'short', 
+          day: 'numeric' 
+        });
+        
+        const category = session.category === 'a' ? 'Category A (Motorcycle)' : 'Category B (Car)';
+        const passed = session.passed;
+        const resultBadge = passed 
+          ? '<span style="background:var(--success);color:white;padding:4px 8px;border-radius:4px;font-size:12px;">✓ Passed</span>'
+          : '<span style="background:var(--error);color:white;padding:4px 8px;border-radius:4px;font-size:12px;">✗ Failed</span>';
+        
+        const minutes = Math.floor(session.timeTaken / 60);
+        const seconds = session.timeTaken % 60;
+        const timeFormatted = `${minutes}:${String(seconds).padStart(2, '0')}`;
+
+        row.innerHTML = `
+          <td style="padding:var(--space-sm);">${formattedDate}</td>
+          <td style="padding:var(--space-sm);">${category}</td>
+          <td style="padding:var(--space-sm);font-weight:600;">${session.score}/${session.total}</td>
+          <td style="padding:var(--space-sm);">${resultBadge}</td>
+          <td style="padding:var(--space-sm);">${timeFormatted}</td>
+        `;
+        
+        tbody.appendChild(row);
+      });
+    }
+
+    function displayStats(historyData) {
+      const totalAttempts = historyData.length;
+      const passed = historyData.filter(s => s.passed).length;
+      const passRate = Math.round((passed / totalAttempts) * 100);
+      
+      const scores = historyData.map(s => s.score);
+      const bestScore = Math.max(...scores);
+      const avgScore = Math.round(scores.reduce((a, b) => a + b, 0) / scores.length);
+      const avgPercentage = Math.round((avgScore / 25) * 100);
+
+      document.getElementById('total-attempts').textContent = totalAttempts;
+      document.getElementById('best-score').textContent = `${bestScore}/25`;
+      document.getElementById('avg-score').textContent = `${avgPercentage}%`;
+      document.getElementById('pass-rate').textContent = `${passRate}%`;
+    }
+
+    function displayChart(historyData) {
+      const ctx = document.getElementById('scoreChart').getContext('2d');
+      
+      // Get last 10 sessions (reversed for chronological order)
+      const recent = historyData.slice(0, 10).reverse();
+      const labels = recent.map((_, i) => `Session ${recent.length - i}`);
+      const scores = recent.map(s => s.score);
+
+      new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'Score',
+            data: scores,
+            borderColor: '#1E3A5F',
+            backgroundColor: 'rgba(30, 58, 95, 0.1)',
+            fill: true,
+            tension: 0.4
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: 25,
+              ticks: {
+                stepSize: 5
+              }
+            }
+          },
+          plugins: {
+            legend: {
+              display: false
+            }
+          }
+        }
+      });
+    }
+
+    function clearHistory() {
+      if (confirm('Are you sure you want to clear all history? This cannot be undone.')) {
+        localStorage.removeItem('dlQuizHistory');
+        location.reload();
+      }
+    }
+
+    // Language toggle
+    document.querySelectorAll('.lang-toggle__btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const lang = btn.dataset.lang;
+        document.querySelectorAll('.lang-toggle__btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        localStorage.setItem('lang', lang);
+        
+        document.querySelectorAll('[data-en]').forEach(el => {
+          el.textContent = el.dataset[lang];
+        });
+        
+        document.body.className = lang === 'np' ? 'lang-np' : '';
+        location.reload();
+      });
+    });
+
+    // Theme toggle
+    document.querySelector('.theme-toggle').addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+    });
+  </script>
+</body>
+</html>

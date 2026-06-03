@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en-NP">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO Meta Tags -->
+  <title>Driving License MCQ Test | Category A & B | Nepal 2026</title>
+  <meta name="description" content="Take free driving license MCQ test. 25 questions, 30 minutes. Category A (Motorcycle) & B (Car). Instant results. English + Nepali.">
+  <meta name="keywords" content="driving license test nepal, mcq quiz, category a b, sawari chalak anumati patra, practice test">
+  <link rel="canonical" href="https://nepal-driving-license-mcq.netlify.app/quiz.html">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Driving License MCQ Test - Nepal 2026">
+  <meta property="og:description" content="Free practice test. 25 questions. Instant results. Category A & B.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nepal-driving-license-mcq.netlify.app/quiz.html">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="navbar__container">
+      <a href="/" class="navbar__logo" style="gap:10px;">
+  <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="18" cy="18" r="17" stroke="#1E3A5F" stroke-width="2" fill="none"/>
+    <circle cx="18" cy="18" r="5" fill="#1E3A5F"/>
+    <line x1="18" y1="1" x2="18" y2="13" stroke="#1E3A5F" stroke-width="2.2" stroke-linecap="round"/>
+    <line x1="18" y1="23" x2="18" y2="35" stroke="#1E3A5F" stroke-width="2.2" stroke-linecap="round"/>
+    <line x1="1" y1="18" x2="13" y2="18" stroke="#1E3A5F" stroke-width="2.2" stroke-linecap="round"/>
+    <line x1="23" y1="18" x2="35" y2="18" stroke="#1E3A5F" stroke-width="2.2" stroke-linecap="round"/>
+    <line x1="5" y1="5" x2="13.5" y2="13.5" stroke="#1E3A5F" stroke-width="2" stroke-linecap="round"/>
+    <line x1="22.5" y1="22.5" x2="31" y2="31" stroke="#1E3A5F" stroke-width="2" stroke-linecap="round"/>
+    <line x1="31" y1="5" x2="22.5" y2="13.5" stroke="#1E3A5F" stroke-width="2" stroke-linecap="round"/>
+    <line x1="13.5" y1="22.5" x2="5" y2="31" stroke="#1E3A5F" stroke-width="2" stroke-linecap="round"/>
+  </svg>
+  <div style="display:flex;flex-direction:column;line-height:1.1;">
+    <span style="font-size:16px;font-weight:800;color:var(--primary);">Nepal DL Practice</span>
+    <span style="font-size:10px;font-weight:500;color:var(--text-secondary);letter-spacing:0.5px;text-transform:uppercase;">Driving License MCQ</span>
+  </div>
+</a>
+      
+      <ul class="navbar__menu">
+        <li><a href="/" class="navbar__link" data-en="Home" data-np="गृह">Home</a></li>
+        <li><a href="/quiz.html" class="navbar__link active" data-en="Quiz" data-np="प्रश्नोत्तर">Quiz</a></li>
+        <li><a href="/questions.html" class="navbar__link" data-en="Questions" data-np="प्रश्न">Questions</a></li>
+        <li><a href="/history.html" class="navbar__link" data-en="History" data-np="इतिहास">History</a></li>
+      </ul>
+      
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div class="lang-toggle">
+          <button class="lang-toggle__btn active" data-lang="en">EN</button>
+          <button class="lang-toggle__btn" data-lang="np">NP</button>
+        </div>
+        <button class="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+      </div>
+      
+      <button class="navbar__toggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Quiz Header -->
+  <div class="container" style="padding:var(--space-md) 0;">
+    <div class="quiz-header">
+      <div style="display:flex;align-items:center;gap:var(--space-sm);">
+        <span id="category-badge" class="btn" style="padding:var(--space-xs) var(--space-sm);">
+          Category A
+        </span>
+        <span id="mode-badge" class="btn btn--secondary" style="padding:var(--space-xs) var(--space-sm);font-size:14px;">
+          Exam Mode
+        </span>
+      </div>
+      
+      <div style="text-align:right;">
+        <div id="question-counter" style="font-weight:600;font-size:18px;">
+          Question 1 of 25
+        </div>
+        <div id="timer" style="color:var(--primary);font-weight:700;font-size:20px;margin-top:4px;">
+          30:00
+        </div>
+      </div>
+    </div>
+    
+    <!-- Progress Bar -->
+    <div class="quiz-progress">
+      <div id="progress-bar" class="quiz-progress__bar" style="width:4%;"></div>
+    </div>
+  </div>
+
+  <!-- AdSense (Mobile Only - Above Quiz) -->
+  <div class="container">
+    <div class="ad-container" style="max-width:320px;margin:var(--space-sm) auto;display:none;" id="mobile-ad">
+      <p>Ad Space (320x50 mobile)</p>
+    </div>
+  </div>
+
+  <!-- Quiz Loading Skeleton -->
+  <div class="container" id="loading-skeleton" style="padding:var(--space-lg);">
+    <div class="skeleton" style="height:200px;border-radius:var(--radius);margin-bottom:var(--space-md);"></div>
+    <div class="skeleton" style="height:60px;border-radius:var(--radius);margin-bottom:var(--space-sm);"></div>
+    <div class="skeleton" style="height:60px;border-radius:var(--radius);"></div>
+  </div>
+
+  <!-- Quiz Content -->
+  <div class="container" id="quiz-container" style="display:none;padding:var(--space-md) 0;">
+    <!-- Question Card -->
+    <div class="question-card">
+      <div style="display:flex;justify-content:space-between;margin-bottom:var(--space-sm);">
+        <span id="question-number" style="font-weight:600;color:var(--primary);">Question 1</span>
+        <span id="difficulty-badge" style="background:var(--success);color:white;padding:var(--space-xs) var(--space-sm);border-radius:var(--radius-sm);font-size:12px;">
+          Easy
+        </span>
+      </div>
+      
+      <div id="question-text" class="question-text">
+        Loading question...
+      </div>
+      
+      <img id="question-image" class="question-image" style="display:none;" alt="Question image">
+      
+      <!-- Options -->
+      <div id="options-container" class="options-grid">
+        <!-- Options will be inserted here by JavaScript -->
+      </div>
+      
+      <!-- Explanation (shown after answer in practice mode) -->
+      <div id="explanation" class="explanation" style="display:none;">
+        <strong data-en="Explanation:" data-np="व्याख्या:">Explanation:</strong>
+        <span id="explanation-text"></span>
+      </div>
+    </div>
+    
+<!-- Navigation -->
+    <div style="margin-top:var(--space-md);">
+      <!-- Question grid dots -->
+      <div id="question-grid" style="display:flex;flex-wrap:wrap;gap:6px;justify-content:center;padding:8px 0;margin-bottom:var(--space-sm);max-height:80px;overflow-y:auto;"></div>
+      
+      <!-- Buttons row -->
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:var(--space-sm);">
+        <button id="prev-btn" class="btn btn--secondary" disabled style="min-width:120px;">
+          ← <span data-en="Previous" data-np="अघिल्लो">Previous</span>
+        </button>
+
+        <button id="next-btn" class="btn btn--primary" style="min-width:120px;">
+          <span data-en="Next" data-np="अर्को">Next</span> →
+        </button>
+        
+        <button id="submit-btn" class="btn btn--primary" style="display:none;background:var(--success);min-width:120px;">
+          <span data-en="Submit Quiz" data-np="प्रश्नोत्तर.Submit">Submit Quiz</span> ✓
+        </button>
+      </div>
+    </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__bottom">
+        © 2026 Nepal Driving License MCQ.<br>
+        <small>Practice makes perfect! Good luck! 🍀</small>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bottom Navigation (Mobile) -->
+  <nav class="bottom-nav">
+    <div class="bottom-nav__items">
+      <a href="/" class="bottom-nav__item">
+        <span class="bottom-nav__icon">🏠</span>
+        <span data-en="Home" data-np="गृह">Home</span>
+      </a>
+      <a href="/quiz.html" class="bottom-nav__item active">
+        <span class="bottom-nav__icon">📝</span>
+        <span data-en="Quiz" data-np="प्रश्नोत्तर">Quiz</span>
+      </a>
+      <a href="/questions.html" class="bottom-nav__item">
+        <span class="bottom-nav__icon">📋</span>
+        <span data-en="Questions" data-np="प्रश्न">Questions</span>
+      </a>
+      <a href="/history.html" class="bottom-nav__item">
+        <span class="bottom-nav__icon">📊</span>
+        <span data-en="History" data-np="इतिहास">History</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- JavaScript -->
+  <script src="/js/utils.js"></script>
+  <script src="/js/quiz.js"></script>
+</body>
+</html>

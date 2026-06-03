@@ -1,0 +1,19 @@
+# NEPAL DRIVING LICENSE MCQ - ROBOTS.TXT
+# Allow all search engines to crawl
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://nepal-driving-license-mcq.netlify.app/sitemap.xml
+
+# Allow Googlebot
+User-agent: Googlebot
+Allow: /
+
+# Allow Bingbot
+User-agent: Bingbot
+Allow: /
+
+# Crawl-delay for polite crawling
+Crawl-delay: 1

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en-NP">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Your Results | Driving License MCQ Nepal</title>
+  <meta name="description" content="View your driving license MCQ test results. Score, percentage, and detailed review with explanations.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <!-- Navbar (same as quiz.html) -->
+  <header class="navbar">
+    <div class="navbar__container">
+      <a href="/" class="navbar__logo">
+        <span class="navbar__logo-icon">🚗</span>
+        <span>DL Nepal</span>
+      </a>
+    </div>
+  </header>
+
+  <div class="container" style="padding:var(--space-xl) 0;">
+    <div class="results-score">
+      <!-- Score Circle -->
+      <div class="score-circle" id="score-circle">
+        <div class="score-circle__inner">
+          <span class="score-number" id="score-number">0</span>
+          <span class="score-total" id="score-total">/25</span>
+        </div>
+      </div>
+      
+      <!-- Pass/Fail Badge -->
+      <div id="pass-fail-badge" class="pass-badge">
+        🎉 PASSED!
+      </div>
+      
+      <h2 id="performance-message" style="margin-bottom:var(--space-md);">
+        Congratulations! You passed!
+      </h2>
+      
+      <!-- Stats Grid -->
+      <div class="stats-bar" style="max-width:600px;margin:var(--space-lg) auto;">
+        <div class="stats-bar__item">
+          <span class="stats-bar__number" id="correct-count">0</span>
+          <span class="stats-bar__label" data-en="Correct" data-np="सही">Correct</span>
+        </div>
+        <div class="stats-bar__item">
+          <span class="stats-bar__number" id="wrong-count">0</span>
+          <span class="stats-bar__label" data-en="Wrong" data-np="गलत">Wrong</span>
+        </div>
+        <div class="stats-bar__item">
+          <span class="stats-bar__number" id="percentage">0%</span>
+          <span class="stats-bar__label" data-en="Score" data-np="स्कोर">Score</span>
+        </div>
+        <div class="stats-bar__item">
+          <span class="stats-bar__number" id="time-taken">0:00</span>
+          <span class="stats-bar__label" data-en="Time" data-np="समय">Time</span>
+        </div>
+      </div>
+      
+      <!-- Action Buttons -->
+      <div style="display:flex;gap:var(--space-sm);justify-content:center;margin-top:var(--space-lg);flex-wrap:wrap;">
+        <a href="/quiz.html?cat=<%=category%>&mode=exam" class="btn btn--primary btn--lg">
+          🔄 <span data-en="Try Again" data-np="फेरि प्रयास गर्नुहोस्">Try Again</span>
+        </a>
+        <a href="/quiz.html?cat=<%=category%>&mode=practice" class="btn btn--secondary btn--lg">
+          📚 <span data-en="Practice Mode" data-np="अभ्यास मोड">Practice Mode</span>
+        </a>
+        <button onclick="shareScore()" class="btn btn--secondary btn--lg">
+          📤 <span data-en="Share Score" data-np="स्कोर साझा गर्नुहोस्">Share Score</span>
+        </button>
+      </div>
+    </div>
+    
+    <!-- AdSense (After Results) -->
+    <div class="ad-container" style="max-width:300px;margin:var(--space-lg) auto;">
+      <p>Ad Space (300x250)</p>
+    </div>
+  </div>
+
+  <!-- Bottom Nav -->
+  <nav class="bottom-nav">
+    <div class="bottom-nav__items">
+      <a href="/" class="bottom-nav__item">🏠<span>Home</span></a>
+      <a href="/quiz.html" class="bottom-nav__item active">📝<span>Quiz</span></a>
+      <a href="/questions.html" class="bottom-nav__item">📋<span>Questions</span></a>
+      <a href="/history.html" class="bottom-nav__item">📊<span>History</span></a>
+    </div>
+  </nav>
+
+  <script>
+    // Get URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const score = parseInt(urlParams.get('score'));
+    const total = parseInt(urlParams.get('total'));
+    const passed = urlParams.get('passed') === 'true';
+    const time = parseInt(urlParams.get('time'));
+    const category = urlParams.get('category');
+    
+    // Update UI
+    document.getElementById('score-number').textContent = score;
+    document.getElementById('score-total').textContent = `/ ${total}`;
+    document.getElementById('correct-count').textContent = score;
+    document.getElementById('wrong-count').textContent = total - score;
+    document.getElementById('percentage').textContent = `${Math.round((score/total)*100)}%`;
+    
+    // Format time
+    const minutes = Math.floor(time / 60);
+    const seconds = time % 60;
+    document.getElementById('time-taken').textContent = `${minutes}:${String(seconds).padStart(2,'0')}`;
+    
+    // Pass/Fail badge
+    const badge = document.getElementById('pass-fail-badge');
+    const message = document.getElementById('performance-message');
+    
+    if (passed) {
+      badge.className = 'pass-badge';
+      badge.textContent = '🎉 PASSED!';
+      message.textContent = 'Congratulations! You passed!';
+      
+      // Trigger confetti
+      triggerConfetti();
+    } else {
+      badge.className = 'pass-badge fail-badge';
+      badge.textContent = '❌ NOT PASSED';
+      message.textContent = 'Keep practicing! You can do it!';
+    }
+    
+    // Update score circle gradient
+    const percentage = (score / total) * 100;
+    const degrees = (percentage / 100) * 360;
+    document.getElementById('score-circle').style.background = 
+      `conic-gradient(var(--success) ${degrees}deg, var(--border) 0)`;
+    
+    // Share function
+    function shareScore() {
+      const text = passed 
+        ? `I scored ${score}/${total} on Nepal Driving License MCQ! Passed! 🎉 Try it free: https://nepal-driving-license-mcq.netlify.app`
+        : `I scored ${score}/${total} on Nepal Driving License MCQ. Keep practicing! 📚 https://nepal-driving-license-mcq.netlify.app`;
+      
+      if (navigator.share) {
+        navigator.share({
+          title: 'Nepal Driving License MCQ',
+          text: text,
+          url: 'https://nepal-driving-license-mcq.netlify.app'
+        });
+      } else {
+        navigator.clipboard.writeText(text);
+        alert('Share link copied to clipboard!');
+      }
+    }
+    
+    // Confetti effect (simple canvas)
+    function triggerConfetti() {
+      // You can add canvas-confetti CDN here
+      // For now, just a simple animation
+      badge.style.transform = 'scale(1.2)';
+      setTimeout(() => badge.style.transform = 'scale(1)', 300);
+    }
+    
+    // Clear quiz progress
+    fetch('/js/clear-progress.js').then(() => {
+      localStorage.removeItem('dlQuizProgress');
+    });
+  </script>
+</body>
+</html>
