@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en-NP">
 <head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9P2LT54KNZ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-9P2LT54KNZ');
+</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
@@ -15,10 +23,24 @@
   <!-- Navbar (same as quiz.html) -->
   <header class="navbar">
     <div class="navbar__container">
-      <a href="/" class="navbar__logo">
-        <span class="navbar__logo-icon">🚗</span>
-        <span>DL Nepal</span>
-      </a>
+      <a href="/" class="navbar__logo" style="gap:10px;">
+  <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+    <circle cx="18" cy="18" r="17" stroke="#1E3A5F" stroke-width="2" fill="none"/>
+    <circle cx="18" cy="18" r="5" fill="#1E3A5F"/>
+    <line x1="18" y1="1" x2="18" y2="13" stroke="#1E3A5F" stroke-width="2.2" stroke-linecap="round"/>
+    <line x1="18" y1="23" x2="18" y2="35" stroke="#1E3A5F" stroke-width="2.2" stroke-linecap="round"/>
+    <line x1="1" y1="18" x2="13" y2="18" stroke="#1E3A5F" stroke-width="2.2" stroke-linecap="round"/>
+    <line x1="23" y1="18" x2="35" y2="18" stroke="#1E3A5F" stroke-width="2.2" stroke-linecap="round"/>
+    <line x1="5" y1="5" x2="13.5" y2="13.5" stroke="#1E3A5F" stroke-width="2" stroke-linecap="round"/>
+    <line x1="22.5" y1="22.5" x2="31" y2="31" stroke="#1E3A5F" stroke-width="2" stroke-linecap="round"/>
+    <line x1="31" y1="5" x2="22.5" y2="13.5" stroke="#1E3A5F" stroke-width="2" stroke-linecap="round"/>
+    <line x1="13.5" y1="22.5" x2="5" y2="31" stroke="#1E3A5F" stroke-width="2" stroke-linecap="round"/>
+  </svg>
+  <div style="display:flex;flex-direction:column;line-height:1.1;">
+    <span style="font-size:16px;font-weight:800;color:var(--primary);">Nepal DL Practice</span>
+    <span style="font-size:10px;font-weight:500;color:var(--text-secondary);letter-spacing:0.5px;text-transform:uppercase;">Driving License MCQ</span>
+  </div>
+</a>
     </div>
   </header>
 

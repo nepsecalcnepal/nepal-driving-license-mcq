@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en-NP">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Disclaimer | Nepal DL Practice</title>
+  <meta name="description" content="Disclaimer for Nepal DL Practice — independent practice platform not affiliated with DOTM.">
+  <link rel="canonical" href="https://drivinglicensenepal.netlify.app/disclaimer.html">
+  <!-- Google tag -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-9P2LT54KNZ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-9P2LT54KNZ');
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="navbar__container">
+      <a href="/" class="navbar__logo" style="gap:10px;">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+          <circle cx="18" cy="18" r="17" stroke="#1E3A5F" stroke-width="2" fill="none"/>
+          <circle cx="18" cy="18" r="5" fill="#1E3A5F"/>
+          <line x1="18" y1="1" x2="18" y2="13" stroke="#1E3A5F" stroke-width="2.2" stroke-linecap="round"/>
+          <line x1="18" y1="23" x2="18" y2="35" stroke="#1E3A5F" stroke-width="2.2" stroke-linecap="round"/>
+          <line x1="1" y1="18" x2="13" y2="18" stroke="#1E3A5F" stroke-width="2.2" stroke-linecap="round"/>
+          <line x1="23" y1="18" x2="35" y2="18" stroke="#1E3A5F" stroke-width="2.2" stroke-linecap="round"/>
+          <line x1="5" y1="5" x2="13.5" y2="13.5" stroke="#1E3A5F" stroke-width="2" stroke-linecap="round"/>
+          <line x1="22.5" y1="22.5" x2="31" y2="31" stroke="#1E3A5F" stroke-width="2" stroke-linecap="round"/>
+          <line x1="31" y1="5" x2="22.5" y2="13.5" stroke="#1E3A5F" stroke-width="2" stroke-linecap="round"/>
+          <line x1="13.5" y1="22.5" x2="5" y2="31" stroke="#1E3A5F" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <div style="display:flex;flex-direction:column;line-height:1.1;">
+          <span style="font-size:16px;font-weight:800;color:var(--primary);">Nepal DL Practice</span>
+          <span style="font-size:10px;font-weight:500;color:var(--text-secondary);letter-spacing:0.5px;text-transform:uppercase;">Driving License MCQ</span>
+        </div>
+      </a>
+      <ul class="navbar__menu">
+        <li><a href="/" class="navbar__link">Home</a></li>
+        <li><a href="/quiz.html" class="navbar__link">Quiz</a></li>
+        <li><a href="/signs.html" class="navbar__link">Signs</a></li>
+        <li><a href="/blog/" class="navbar__link">Blog</a></li>
+      </ul>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <button class="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+      </div>
+      <button class="navbar__toggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="container" style="max-width:800px;padding:var(--space-xl) var(--space-sm);">
+    <h1 style="margin-bottom:var(--space-lg);">Disclaimer</h1>
+    <p style="color:var(--text-secondary);margin-bottom:var(--space-xl);">Last updated: June 2026</p>
+
+    <div class="card" style="margin-bottom:var(--space-md);">
+      <h2 style="margin-bottom:var(--space-sm);">Independent Platform</h2>
+      <p>Nepal DL Practice is an independent educational practice platform. We are <strong>not affiliated with, endorsed by, or connected to</strong> the Department of Transport Management (DOTM), Ministry of Physical Infrastructure and Transport, or any Government of Nepal agency.</p>
+    </div>
+
+    <div class="card" style="margin-bottom:var(--space-md);">
+      <h2 style="margin-bottom:var(--space-sm);">Practice Purpose Only</h2>
+      <p>All questions and content on this website are for <strong>practice and educational purposes only</strong>. While we strive for accuracy, we cannot guarantee that all questions reflect the current official exam. Always refer to official DOTM resources for authoritative information.</p>
+    </div>
+
+    <div class="card" style="margin-bottom:var(--space-md);">
+      <h2 style="margin-bottom:var(--space-sm);">No Liability</h2>
+      <p>We are not responsible for any exam results, license decisions, or actions taken based on information from this website. Use this platform as a supplement to official study materials.</p>
+    </div>
+
+    <div class="card" style="margin-bottom:var(--space-md);">
+      <h2 style="margin-bottom:var(--space-sm);">External Links</h2>
+      <p>This site may contain links to external websites. We are not responsible for the content or privacy practices of those sites.</p>
+    </div>
+
+    <div class="card">
+      <h2 style="margin-bottom:var(--space-sm);">Contact</h2>
+      <p>If you have questions about this disclaimer, contact us at <a href="mailto:dlnepal@gmail.com">dlnepal@gmail.com</a></p>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__bottom">
+        © 2026 Nepal DL Practice. All rights reserved.<br>
+        <small>Not affiliated with DOTM or any Government of Nepal agency.</small>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', t);
+    document.querySelector('.theme-toggle').textContent = t === 'dark' ? '☀️' : '🌙';
+    document.querySelector('.theme-toggle').addEventListener('click', () => {
+      const cur = document.documentElement.getAttribute('data-theme');
+      const next = cur === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      document.querySelector('.theme-toggle').textContent = next === 'dark' ? '☀️' : '🌙';
+      localStorage.setItem('theme', next);
+    });
+  </script>
+</body>
+</html>
