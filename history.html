@@ -3,40 +3,58 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
   <title>Score History | Driving License MCQ Nepal</title>
   <meta name="description" content="View your driving license MCQ practice history. Track progress, see improvement over time.">
-  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
-  
-  <!-- Chart.js for graph -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+
   <!-- Navbar -->
   <header class="navbar">
     <div class="navbar__container">
-      <a href="/" class="navbar__logo">
-        <span class="navbar__logo-icon">🚗</span>
-        <span>DL Nepal</span>
+
+      <a href="/" class="navbar__logo" style="gap:10px;">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="18" cy="18" r="17" stroke="#1E3A5F" stroke-width="2" fill="none"/>
+          <circle cx="18" cy="18" r="5" fill="#1E3A5F"/>
+          <line x1="18" y1="1" x2="18" y2="13" stroke="#1E3A5F" stroke-width="2.2" stroke-linecap="round"/>
+          <line x1="18" y1="23" x2="18" y2="35" stroke="#1E3A5F" stroke-width="2.2" stroke-linecap="round"/>
+          <line x1="1" y1="18" x2="13" y2="18" stroke="#1E3A5F" stroke-width="2.2" stroke-linecap="round"/>
+          <line x1="23" y1="18" x2="35" y2="18" stroke="#1E3A5F" stroke-width="2.2" stroke-linecap="round"/>
+          <line x1="5" y1="5" x2="13.5" y2="13.5" stroke="#1E3A5F" stroke-width="2" stroke-linecap="round"/>
+          <line x1="22.5" y1="22.5" x2="31" y2="31" stroke="#1E3A5F" stroke-width="2" stroke-linecap="round"/>
+          <line x1="31" y1="5" x2="22.5" y2="13.5" stroke="#1E3A5F" stroke-width="2" stroke-linecap="round"/>
+          <line x1="13.5" y1="22.5" x2="5" y2="31" stroke="#1E3A5F" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <div style="display:flex;flex-direction:column;line-height:1.1;">
+          <span style="font-size:16px;font-weight:800;color:var(--primary);">Nepal DL Practice</span>
+          <span style="font-size:10px;font-weight:500;color:var(--text-secondary);letter-spacing:0.5px;text-transform:uppercase;">Driving License MCQ</span>
+        </div>
       </a>
-      
+
       <ul class="navbar__menu">
         <li><a href="/" class="navbar__link">Home</a></li>
         <li><a href="/quiz.html" class="navbar__link">Quiz</a></li>
         <li><a href="/questions.html" class="navbar__link">Questions</a></li>
+        <li><a href="/signs.html" class="navbar__link">Signs</a></li>
         <li><a href="/history.html" class="navbar__link active">History</a></li>
+        <li><a href="/blog/" class="navbar__link">Blog</a></li>
       </ul>
-      
+
       <div style="display:flex;align-items:center;gap:10px;">
         <div class="lang-toggle">
           <button class="lang-toggle__btn active" data-lang="en">EN</button>
           <button class="lang-toggle__btn" data-lang="np">NP</button>
         </div>
-        <button class="theme-toggle">🌙</button>
+        <button class="theme-toggle" aria-label="Toggle dark mode">🌙</button>
       </div>
+
+      <button class="navbar__toggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </header>
 
@@ -67,18 +85,24 @@
 
     <!-- Score Chart -->
     <div class="card" style="margin-bottom:var(--space-lg);padding:var(--space-md);">
-      <h2 style="margin-bottom:var(--space-md);" data-en="Score Progress Over Time" data-np="समयसँगै स्कोर प्रगति">Score Progress Over Time</h2>
+      <h2 style="margin-bottom:var(--space-md);"
+        data-en="Score Progress Over Time"
+        data-np="समयसँगै स्कोर प्रगति">Score Progress Over Time</h2>
       <canvas id="scoreChart" style="max-height:300px;"></canvas>
     </div>
 
     <!-- History Table -->
     <div class="card">
-      <h2 style="margin-bottom:var(--space-md);" data-en="Recent Practice Sessions" data-np="ताजा अभ्यास सत्रहरू">Recent Practice Sessions</h2>
-      
+      <h2 style="margin-bottom:var(--space-md);"
+        data-en="Recent Practice Sessions"
+        data-np="ताजा अभ्यास सत्रहरू">Recent Practice Sessions</h2>
+
       <div id="empty-state" style="text-align:center;padding:var(--space-xl);display:none;">
         <span style="font-size:64px;display:block;margin-bottom:var(--space-md);">📝</span>
         <h3 data-en="No practice sessions yet!" data-np="अहिलेसम्म कुनै अभ्यास सत्र छैन!">No practice sessions yet!</h3>
-        <p data-en="Start practicing to see your history here." data-np="यहाँ इतिहास देख्न अभ्यास सुरु गर्नुहोस्।">Start practicing to see your history here.</p>
+        <p data-en="Start practicing to see your history here." data-np="यहाँ इतिहास देख्न अभ्यास सुरु गर्नुहोस्।">
+          Start practicing to see your history here.
+        </p>
         <a href="/quiz.html" class="btn btn--primary" style="margin-top:var(--space-md);">
           🚀 <span data-en="Start Practicing" data-np="अभ्यास सुरु गर्नुहोस्">Start Practicing</span>
         </a>
@@ -95,14 +119,13 @@
               <th style="padding:var(--space-sm);text-align:left;" data-en="Time" data-np="समय">Time</th>
             </tr>
           </thead>
-          <tbody id="history-rows">
-            <!-- Rows will be inserted here by JavaScript -->
-          </tbody>
+          <tbody id="history-rows"></tbody>
         </table>
       </div>
 
-      <button onclick="clearHistory()" class="btn btn--secondary" style="margin-top:var(--space-md);color:var(--error);border-color:var(--error);">
-        🗑️ <span data-en="Clear All History" data-np="সব इतिहास हटाउनुहोस्">Clear All History</span>
+      <button onclick="clearHistory()" class="btn btn--secondary"
+        style="margin-top:var(--space-md);color:var(--error);border-color:var(--error);">
+        🗑️ <span data-en="Clear All History" data-np="सबै इतिहास हटाउनुहोस्">Clear All History</span>
       </button>
     </div>
   </div>
@@ -130,44 +153,41 @@
   </nav>
 
   <script>
-    // Load history from localStorage
-    const history = JSON.parse(localStorage.getItem('dlQuizHistory') || '[]');
-    
-    // Display empty state if no history
-    if (history.length === 0) {
+    // Apply saved theme
+    const savedTheme = localStorage.getItem('theme') ||
+      (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    document.querySelector('.theme-toggle').textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+
+    // Load history
+    const quizHistory = JSON.parse(localStorage.getItem('dlQuizHistory') || '[]');
+
+    if (quizHistory.length === 0) {
       document.getElementById('empty-state').style.display = 'block';
       document.getElementById('history-table').style.display = 'none';
     } else {
-      displayHistory(history);
-      displayStats(history);
-      displayChart(history);
+      displayHistory(quizHistory);
+      displayStats(quizHistory);
+      displayChart(quizHistory);
     }
 
     function displayHistory(historyData) {
       const tbody = document.getElementById('history-rows');
       tbody.innerHTML = '';
-
       historyData.slice(0, 50).forEach(session => {
         const row = document.createElement('tr');
         row.style.borderBottom = '1px solid var(--border)';
-        
         const date = new Date(session.date);
-        const formattedDate = date.toLocaleDateString('en-NP', { 
-          year: 'numeric', 
-          month: 'short', 
-          day: 'numeric' 
+        const formattedDate = date.toLocaleDateString('en-NP', {
+          year: 'numeric', month: 'short', day: 'numeric'
         });
-        
         const category = session.category === 'a' ? 'Category A (Motorcycle)' : 'Category B (Car)';
-        const passed = session.passed;
-        const resultBadge = passed 
+        const resultBadge = session.passed
           ? '<span style="background:var(--success);color:white;padding:4px 8px;border-radius:4px;font-size:12px;">✓ Passed</span>'
           : '<span style="background:var(--error);color:white;padding:4px 8px;border-radius:4px;font-size:12px;">✗ Failed</span>';
-        
         const minutes = Math.floor(session.timeTaken / 60);
         const seconds = session.timeTaken % 60;
         const timeFormatted = `${minutes}:${String(seconds).padStart(2, '0')}`;
-
         row.innerHTML = `
           <td style="padding:var(--space-sm);">${formattedDate}</td>
           <td style="padding:var(--space-sm);">${category}</td>
@@ -175,7 +195,6 @@
           <td style="padding:var(--space-sm);">${resultBadge}</td>
           <td style="padding:var(--space-sm);">${timeFormatted}</td>
         `;
-        
         tbody.appendChild(row);
       });
     }
@@ -184,12 +203,10 @@
       const totalAttempts = historyData.length;
       const passed = historyData.filter(s => s.passed).length;
       const passRate = Math.round((passed / totalAttempts) * 100);
-      
       const scores = historyData.map(s => s.score);
       const bestScore = Math.max(...scores);
       const avgScore = Math.round(scores.reduce((a, b) => a + b, 0) / scores.length);
       const avgPercentage = Math.round((avgScore / 25) * 100);
-
       document.getElementById('total-attempts').textContent = totalAttempts;
       document.getElementById('best-score').textContent = `${bestScore}/25`;
       document.getElementById('avg-score').textContent = `${avgPercentage}%`;
@@ -198,12 +215,9 @@
 
     function displayChart(historyData) {
       const ctx = document.getElementById('scoreChart').getContext('2d');
-      
-      // Get last 10 sessions (reversed for chronological order)
       const recent = historyData.slice(0, 10).reverse();
-      const labels = recent.map((_, i) => `Session ${recent.length - i}`);
+      const labels = recent.map((_, i) => `Session ${i + 1}`);
       const scores = recent.map(s => s.score);
-
       new Chart(ctx, {
         type: 'line',
         data: {
@@ -214,26 +228,18 @@
             borderColor: '#1E3A5F',
             backgroundColor: 'rgba(30, 58, 95, 0.1)',
             fill: true,
-            tension: 0.4
+            tension: 0.4,
+            pointBackgroundColor: '#1E3A5F',
+            pointRadius: 5
           }]
         },
         options: {
           responsive: true,
           maintainAspectRatio: true,
           scales: {
-            y: {
-              beginAtZero: true,
-              max: 25,
-              ticks: {
-                stepSize: 5
-              }
-            }
+            y: { beginAtZero: true, max: 25, ticks: { stepSize: 5 } }
           },
-          plugins: {
-            legend: {
-              display: false
-            }
-          }
+          plugins: { legend: { display: false } }
         }
       });
     }
@@ -245,6 +251,15 @@
       }
     }
 
+    // Theme toggle
+    document.querySelector('.theme-toggle').addEventListener('click', () => {
+      const cur = document.documentElement.getAttribute('data-theme');
+      const next = cur === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      document.querySelector('.theme-toggle').textContent = next === 'dark' ? '☀️' : '🌙';
+      localStorage.setItem('theme', next);
+    });
+
     // Language toggle
     document.querySelectorAll('.lang-toggle__btn').forEach(btn => {
       btn.addEventListener('click', () => {
@@ -252,22 +267,16 @@
         document.querySelectorAll('.lang-toggle__btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         localStorage.setItem('lang', lang);
-        
         document.querySelectorAll('[data-en]').forEach(el => {
-          el.textContent = el.dataset[lang];
+          if (el.dataset[lang]) el.textContent = el.dataset[lang];
         });
-        
-        document.body.className = lang === 'np' ? 'lang-np' : '';
-        location.reload();
       });
     });
 
-    // Theme toggle
-    document.querySelector('.theme-toggle').addEventListener('click', () => {
-      const currentTheme = document.documentElement.getAttribute('data-theme');
-      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', newTheme);
-      localStorage.setItem('theme', newTheme);
+    // Mobile menu
+    document.querySelector('.navbar__toggle').addEventListener('click', () => {
+      const menu = document.querySelector('.navbar__menu');
+      menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
     });
   </script>
 </body>
